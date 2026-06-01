@@ -1,0 +1,290 @@
+{
+  "name": "idpcore-vscode",
+  "displayName": "IDPCore Tenant Studio",
+  "description": "Develop IDPCore tenant modules, models, UI, shared packages, and ACL from VS Code.",
+  "version": "0.1.0",
+  "publisher": "idpcore",
+  "engines": {
+    "vscode": "^1.90.0"
+  },
+  "categories": [
+    "Other"
+  ],
+  "activationEvents": [
+    "onStartupFinished",
+    "onCommand:idpcore.configureConnection",
+    "onCommand:idpcore.pullTenant",
+    "onCommand:idpcore.pushActiveFile",
+    "onCommand:idpcore.pushAllChanges",
+    "onCommand:idpcore.openCodexTerminal",
+    "onCommand:idpcore.runCodexPrompt",
+    "onView:idpcoreTenantExplorer",
+    "onView:idpcoreLifecycle",
+    "onCommand:idpcore.openTenantPreview",
+    "onCommand:idpcore.signIn"
+  ],
+  "main": "./dist/extension.js",
+  "contributes": {
+    "commands": [
+      {
+        "command": "idpcore.configureConnection",
+        "title": "IDPCore: Configure Connection"
+      },
+      {
+        "command": "idpcore.signIn",
+        "title": "IDPCore: Sign In to ideNew",
+        "icon": {
+          "light": "media/actions/light/sign-in.svg",
+          "dark": "media/actions/dark/sign-in.svg"
+        }
+      },
+      {
+        "command": "idpcore.pullTenant",
+        "title": "IDPCore: Pull Tenant Workspace",
+        "icon": {
+          "light": "media/actions/light/pull.svg",
+          "dark": "media/actions/dark/pull.svg"
+        }
+      },
+      {
+        "command": "idpcore.pushActiveFile",
+        "title": "IDPCore: Push Active File"
+      },
+      {
+        "command": "idpcore.pushAllChanges",
+        "title": "IDPCore: Push All Changes"
+      },
+      {
+        "command": "idpcore.refreshExplorer",
+        "title": "IDPCore: Refresh Explorer",
+        "icon": {
+          "light": "media/actions/light/refresh.svg",
+          "dark": "media/actions/dark/refresh.svg"
+        }
+      },
+      {
+        "command": "idpcore.openTenantRoot",
+        "title": "IDPCore: Open Tenant Root"
+      },
+      {
+        "command": "idpcore.openTenantPreview",
+        "title": "IDPCore: Open Tenant Preview",
+        "icon": {
+          "light": "media/actions/light/preview.svg",
+          "dark": "media/actions/dark/preview.svg"
+        }
+      },
+      {
+        "command": "idpcore.createModule",
+        "title": "IDPCore: Create Module"
+      },
+      {
+        "command": "idpcore.createModel",
+        "title": "IDPCore: Create Model"
+      },
+      {
+        "command": "idpcore.createUiPackage",
+        "title": "IDPCore: Create UI Package"
+      },
+      {
+        "command": "idpcore.createSharedUiProject",
+        "title": "IDPCore: Create Shared UI Project"
+      },
+      {
+        "command": "idpcore.createSharedModuleProject",
+        "title": "IDPCore: Create Shared Backend Project"
+      },
+      {
+        "command": "idpcore.createSharedUiFile",
+        "title": "IDPCore: Create Shared UI File"
+      },
+      {
+        "command": "idpcore.createSharedModuleFile",
+        "title": "IDPCore: Create Shared Backend File"
+      },
+      {
+        "command": "idpcore.createAclFile",
+        "title": "IDPCore: Create ACL File"
+      },
+      {
+        "command": "idpcore.executeLifecycleAction",
+        "title": "IDPCore: Execute Lifecycle Action"
+      },
+      {
+        "command": "idpcore.rollbackLifecycleRevision",
+        "title": "IDPCore: Rollback Lifecycle Revision"
+      },
+      {
+        "command": "idpcore.openCodexTerminal",
+        "title": "IDPCore: Open Codex Terminal"
+      },
+      {
+        "command": "idpcore.runCodexPrompt",
+        "title": "IDPCore: Run Codex Prompt"
+      }
+    ],
+    "views": {
+      "idpcore": [
+        {
+          "id": "idpcoreTenantExplorer",
+          "name": "Tenant"
+        },
+        {
+          "id": "idpcoreLifecycle",
+          "name": "Lifecycle"
+        }
+      ]
+    },
+    "menus": {
+      "view/item/context": [
+        {
+          "command": "idpcore.createSharedUiFile",
+          "when": "view == idpcoreTenantExplorer && viewItem == folder:shared-ui-project",
+          "group": "inline@1"
+        },
+        {
+          "command": "idpcore.createSharedModuleFile",
+          "when": "view == idpcoreTenantExplorer && viewItem == folder:shared-module-project",
+          "group": "inline@1"
+        },
+        {
+          "command": "idpcore.createAclFile",
+          "when": "view == idpcoreTenantExplorer && viewItem == section:acl",
+          "group": "inline@1"
+        },
+        {
+          "command": "idpcore.openTenantPreview",
+          "when": "view == idpcoreTenantExplorer && viewItem == file:ui",
+          "group": "navigation@1"
+        },
+        {
+          "command": "idpcore.openTenantPreview",
+          "when": "view == idpcoreTenantExplorer && viewItem == file:shared-ui-file",
+          "group": "navigation@1"
+        },
+        {
+          "command": "idpcore.openTenantPreview",
+          "when": "view == idpcoreTenantExplorer && viewItem == folder:shared-ui-project",
+          "group": "navigation@1"
+        }
+      ],
+      "view/title": [
+        {
+          "command": "idpcore.signIn",
+          "when": "view == idpcoreTenantExplorer",
+          "group": "navigation@0"
+        },
+        {
+          "command": "idpcore.pullTenant",
+          "when": "view == idpcoreTenantExplorer",
+          "group": "navigation@1"
+        },
+        {
+          "command": "idpcore.openTenantPreview",
+          "when": "view == idpcoreTenantExplorer",
+          "group": "navigation@2"
+        },
+        {
+          "command": "idpcore.refreshExplorer",
+          "when": "view == idpcoreTenantExplorer",
+          "group": "navigation@3"
+        },
+        {
+          "command": "idpcore.refreshExplorer",
+          "when": "view == idpcoreLifecycle",
+          "group": "navigation@1"
+        }
+      ]
+    },
+    "configuration": {
+      "title": "IDPCore Tenant Studio",
+      "properties": {
+        "idpcore.coreApiBase": {
+          "type": "string",
+          "default": "http://127.0.0.1:3002",
+          "description": "Base URL of the ideNew app."
+        },
+        "idpcore.tenantHost": {
+          "type": "string",
+          "default": "",
+          "description": "Tenant hostname sent as X-Tenant-Host."
+        },
+        "idpcore.localRoot": {
+          "type": "string",
+          "default": "tenant-workspace",
+          "description": "Folder inside the VS Code workspace where the tenant files are materialized."
+        },
+        "idpcore.codexBin": {
+          "type": "string",
+          "default": "codex",
+          "description": "Codex CLI binary to run inside the pulled tenant workspace."
+        },
+        "idpcore.autoPushOnSave": {
+          "type": "boolean",
+          "default": true,
+          "description": "Push a saved tenant file back to ideNew automatically."
+        },
+        "idpcore.previewPort": {
+          "type": "string",
+          "default": "3000",
+          "description": "Port used for tenant UI preview.html runtime."
+        },
+        "idpcore.previewRoute": {
+          "type": "string",
+          "default": "/",
+          "description": "Initial route passed to the tenant preview runtime."
+        },
+        "idpcore.previewStage": {
+          "type": "string",
+          "enum": [
+            "draft",
+            "published"
+          ],
+          "default": "draft",
+          "description": "Preview stage for tenant UI runtime."
+        }
+      }
+    },
+    "viewsContainers": {
+      "activitybar": [
+        {
+          "id": "idpcore",
+          "title": "IDPCore",
+          "icon": "media/activity-bar.svg"
+        }
+      ]
+    },
+    "viewsWelcome": [
+      {
+        "view": "idpcoreTenantExplorer",
+        "contents": "Set the ideNew base URL and tenant defaults.\n[Configure Connection](command:idpcore.configureConnection)\n\nAuthenticate with your browser session.\n[Sign In to ideNew](command:idpcore.signIn)\n\nPull the tenant workspace into VS Code.\n[Pull Tenant Workspace](command:idpcore.pullTenant)"
+      },
+      {
+        "view": "idpcoreLifecycle",
+        "contents": "Open a tenant file after pull to see publish and revision actions."
+      }
+    ]
+  },
+  "scripts": {
+    "build": "tsc -p ./tsconfig.json",
+    "watch": "tsc -w -p ./tsconfig.json",
+    "type-check": "tsc --noEmit -p ./tsconfig.json",
+    "pretest": "npm run build",
+    "test": "node ./dist/test/runTest.js",
+    "package:vsix": "node ./scripts/package-vsix.mjs",
+    "dev:host": "node ./scripts/launch-dev-host.mjs",
+    "dev:host:here": "node ./scripts/launch-dev-host.mjs .."
+  },
+  "devDependencies": {
+    "@types/node": "^22.15.30",
+    "esbuild": "^0.28.0",
+    "@vscode/vsce": "^3.6.1",
+    "@types/vscode": "^1.90.0",
+    "typescript": "^5.9.3",
+    "vscode": "^1.1.37",
+    "@types/mocha": "^10.0.10",
+    "@vscode/test-electron": "^2.5.2",
+    "mocha": "^10.8.2"
+  },
+  "icon": "media/icon.png"
+}
