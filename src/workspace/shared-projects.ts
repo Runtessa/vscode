@@ -48,17 +48,32 @@ export const findSharedProjectForPath = (manifest: TenantWorkspaceManifest, rela
     .find((project) => normalizedPath === project.relativeRoot || normalizedPath.startsWith(`${project.relativeRoot}/`)) || null;
 };
 
+const splitBootstrapPath = (projectKind: 'ui' | 'module', normalizedPath: string) => {
+  const root = projectKind === 'ui' ? 'shared-ui/' : 'shared-modules/';
+  const remainder = normalizedPath.slice(root.length);
+  const markerIndex = remainder.indexOf('/src/');
+  if (markerIndex > 0) {
+    return {
+      projectName: remainder.slice(0, markerIndex).trim(),
+      entryPath: remainder.slice(markerIndex + 1),
+    };
+  }
+
+  const firstSlash = remainder.indexOf('/');
+  if (firstSlash <= 0) return null;
+  return {
+    projectName: remainder.slice(0, firstSlash).trim(),
+    entryPath: remainder.slice(firstSlash + 1),
+  };
+};
+
 export const inferSharedProjectBootstrap = (relativePath: string, content: string) => {
   const normalizedPath = String(relativePath || '').replace(/\\/g, '/').replace(/^\/+/, '');
   if (!normalizedPath.startsWith('shared-ui/') && !normalizedPath.startsWith('shared-modules/')) return null;
   const projectKind = normalizedPath.startsWith('shared-ui/') ? 'ui' : 'module';
-  const root = projectKind === 'ui' ? 'shared-ui/' : 'shared-modules/';
-  const remainder = normalizedPath.slice(root.length);
-  const marker = '/src/';
-  const markerIndex = remainder.indexOf(marker);
-  if (markerIndex <= 0) return null;
-  const projectName = remainder.slice(0, markerIndex).trim();
-  const entryPath = remainder.slice(markerIndex + 1);
+  const parsed = splitBootstrapPath(projectKind, normalizedPath);
+  if (!parsed) return null;
+  const { projectName, entryPath } = parsed;
   if (!projectName || !entryPath) return null;
   const fileExtension = normalizedPath.split('.').pop() || (projectKind === 'ui' ? 'jsx' : 'js');
   return {

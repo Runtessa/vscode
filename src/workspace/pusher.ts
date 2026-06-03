@@ -75,7 +75,7 @@ const deleteMappedFile = async (client: IdeClient, entry: ManifestFileEntry) => 
 };
 
 const inferModuleCreation = (relativePath: string, content: string) => {
-  const match = relativePath.match(/^modules\/(.*\/)?([a-z]+)\.module\.([^.\/]+)$/i);
+  const match = relativePath.match(/^modules\/(.*\/)?([a-z]+)(?:\.module)?\.([^.\/]+)$/i);
   if (!match) return null;
   const routeDir = String(match[1] || '').replace(/\/$/, '');
   const routePath = routeDir ? `/${routeDir}` : '/';

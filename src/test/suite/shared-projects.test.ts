@@ -55,10 +55,24 @@ suite('shared project helpers', () => {
     assert.equal(bootstrap?.version, '1.0.0');
   });
 
+  test('boots a new shared ui project from a non-src local file', () => {
+    const bootstrap = inferSharedProjectBootstrap('shared-ui/widgets/Button.jsx', 'export default function Button() {}');
+    assert.equal(bootstrap?.projectKind, 'ui');
+    assert.equal(bootstrap?.projectName, 'widgets');
+    assert.equal(bootstrap?.entryPath, 'Button.jsx');
+  });
+
   test('boots a new shared backend project from first local entry file', () => {
     const bootstrap = inferSharedProjectBootstrap('shared-modules/services/auth/src/index.js', 'module.exports = {}');
     assert.equal(bootstrap?.projectKind, 'module');
     assert.equal(bootstrap?.projectName, 'services/auth');
     assert.equal(bootstrap?.entryPath, 'src/index.js');
+  });
+
+  test('boots a new shared backend project from a non-src local file', () => {
+    const bootstrap = inferSharedProjectBootstrap('shared-modules/tools/math.js', 'module.exports = {}');
+    assert.equal(bootstrap?.projectKind, 'module');
+    assert.equal(bootstrap?.projectName, 'tools');
+    assert.equal(bootstrap?.entryPath, 'math.js');
   });
 });
