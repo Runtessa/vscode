@@ -5,7 +5,8 @@
   "version": "0.1.0",
   "publisher": "idpcore",
   "engines": {
-    "vscode": "^1.90.0"
+    "vscode": "^1.90.0",
+    "node": ">=22.13.0 <23"
   },
   "categories": [
     "Other"
@@ -276,15 +277,19 @@
     "dev:host:here": "node ./scripts/launch-dev-host.mjs .."
   },
   "devDependencies": {
-    "@types/node": "^22.15.30",
-    "esbuild": "^0.28.0",
-    "@vscode/vsce": "^3.6.1",
-    "@types/vscode": "^1.90.0",
-    "typescript": "^5.9.3",
-    "vscode": "^1.1.37",
-    "@types/mocha": "^10.0.10",
-    "@vscode/test-electron": "^2.5.2",
-    "mocha": "^10.8.2"
+    "@types/node": "20.19.27",
+    "esbuild": "0.28.2",
+    "@vscode/vsce": "4.0.0",
+    "@types/vscode": "1.120.0",
+    "typescript": "5.9.3",
+    "@types/mocha": "10.0.10",
+    "@vscode/test-electron": "2.5.2",
+    "mocha": "12.0.3"
   },
-  "icon": "media/icon.png"
+  "icon": "media/icon.png",
+  "license": "Apache-2.0",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/AlirezaDadrass/Idp.git"
+  }
 }

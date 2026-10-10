@@ -18,7 +18,7 @@ export class LifecycleProvider implements vscode.TreeDataProvider<LifecycleNode>
   constructor(private readonly getClient: () => Promise<IdeClient>) {}
 
   refresh() {
-    this.emitter.fire();
+    this.emitter.fire(undefined);
   }
 
   getTreeItem(element: LifecycleNode): vscode.TreeItem {

@@ -43,7 +43,7 @@ export class TenantExplorerProvider implements vscode.TreeDataProvider<TenantExp
   readonly onDidChangeTreeData = this.emitter.event;
 
   refresh() {
-    this.emitter.fire();
+    this.emitter.fire(undefined);
   }
 
   getTreeItem(element: TenantExplorerNode): vscode.TreeItem {
