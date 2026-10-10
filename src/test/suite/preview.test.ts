@@ -64,6 +64,12 @@ suite('preview helpers', () => {
     assert.equal(resolvePreviewTarget(manifest, 'shared-ui/layouts')?.version, '2.0.0');
   });
 
+  test('handles missing manifest paths and newly created files inside shared projects', () => {
+    assert.equal(resolvePreviewTarget(manifest), null);
+    assert.equal(resolvePreviewTarget(manifest, 'untracked/file.ts'), null);
+    assert.equal(resolvePreviewTarget(manifest, 'shared-ui/layouts/src/new.jsx')?.kind, 'shared-ui');
+  });
+
   test('builds preview url with route and stage', () => {
     const url = buildPreviewUrl({
       tenantHost: 'tenant.localhost',

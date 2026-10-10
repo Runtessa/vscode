@@ -13,12 +13,22 @@ export async function run(): Promise<void> {
     .forEach((file) => mocha.addFile(path.join(suiteRoot, file)));
 
   await new Promise<void>((resolve, reject) => {
-    mocha.run((failures) => {
+    const runner = mocha.run((failures) => {
       if (failures > 0) {
         reject(new Error(`${failures} test(s) failed.`));
         return;
       }
-      resolve();
+      const resultPath = process.env.IDPCORE_EXTENSION_TEST_RESULT;
+      if (!runner.stats?.tests) {
+        reject(new Error('No extension tests ran.'));
+        return;
+      }
+      if (resultPath) {
+        fs.writeFile(resultPath, JSON.stringify({ tests: runner.stats.tests, passes: runner.stats.passes }))
+          .then(() => resolve(), reject);
+      } else {
+        resolve();
+      }
     });
   });
 }

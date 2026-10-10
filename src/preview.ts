@@ -37,6 +37,7 @@ const resolveProtocol = (tenantHost: string, coreApiBase: string) => {
   return 'http:';
 };
 
+// Duplicate D24: see docs/release/code-integrity-audit.md before changing either copy.
 export const normalizePreviewRoute = (value: string) => {
   const raw = String(value || '').trim();
   if (!raw) return '/';
@@ -52,7 +53,8 @@ export const normalizePreviewRoute = (value: string) => {
   return raw.startsWith('/') ? raw : `/${raw}`;
 };
 
-const toPreviewTarget = (entry: ManifestFileEntry): PreviewTarget | null => {
+const toPreviewTarget = (entry: ManifestFileEntry | undefined): PreviewTarget | null => {
+  if (!entry) return null;
   if (entry.kind === 'ui' && entry.name && entry.version) {
     return {
       kind: 'ui',
