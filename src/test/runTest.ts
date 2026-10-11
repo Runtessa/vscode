@@ -23,13 +23,15 @@ const resolveExecutablePath = () =>
 async function main() {
   const extensionDevelopmentPath = path.resolve(__dirname, '..', '..');
   const extensionTestsPath = path.resolve(__dirname, 'suite', 'index.js');
-  const vscodeExecutablePath = resolveExecutablePath();
+  const requestedVersion = process.env.VSCODE_TEST_VERSION;
+  const vscodeExecutablePath = requestedVersion ? undefined : resolveExecutablePath();
   const temporaryProfile = fs.mkdtempSync(path.join(os.tmpdir(), 'idpcore-extension-test-'));
   const resultPath = path.join(temporaryProfile, 'result.json');
   try {
     await runTests({
       extensionDevelopmentPath,
       extensionTestsPath,
+      ...(requestedVersion ? { version: requestedVersion } : {}),
       ...(vscodeExecutablePath ? { vscodeExecutablePath } : {}),
       launchArgs: [`--user-data-dir=${path.join(temporaryProfile, 'user')}`,
         `--extensions-dir=${path.join(temporaryProfile, 'extensions')}`, '--disable-extensions'],
