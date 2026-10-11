@@ -16,7 +16,7 @@ import { findSharedProjectForPath } from '../workspace/shared-projects';
 const output = vscode.window.createOutputChannel('Runtessa Codex');
 
 export const resolveClient = async (context: vscode.ExtensionContext): Promise<IdeClient> => {
-  const { IdeClient } = await import('../api/client');
+  const { IdeClient } = await import('../api/client.js');
   const baseUrl = getCoreApiBase();
   const tenantHost = getTenantHost();
   const sessionToken = await getSessionToken(context);
@@ -243,7 +243,7 @@ export const signInWithBrowser = async (context: vscode.ExtensionContext) => {
     },
     async () => {
       const sessionToken = await startBrowserLogin({ baseUrl, tenantHost });
-      const { IdeClient } = await import('../api/client');
+      const { IdeClient } = await import('../api/client.js');
       const client = new IdeClient({ baseUrl, tenantHost, sessionToken });
       await client.getCurrentUser();
       await setSessionToken(context, sessionToken);
