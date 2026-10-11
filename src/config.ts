@@ -27,7 +27,7 @@ export const setSessionToken = async (context: vscode.ExtensionContext, token: s
 export const ensureWorkspaceFolder = () => {
   const folder = vscode.workspace.workspaceFolders?.[0];
   if (!folder) {
-    throw new Error('Open a VS Code workspace folder before using IDPCore Tenant Studio.');
+    throw new Error('Open a VS Code workspace folder before using Runtessa Tenant Studio.');
   }
   return folder;
 };

@@ -13,7 +13,7 @@ import { getTenantRootUri, readManifest, relativeTenantPath } from '../workspace
 import { isTenantWorkspaceFile, pushAllChanges, pushFileFromEditor, pushFileFromUri, pushManifestEntry } from '../workspace/pusher';
 import { findSharedProjectForPath } from '../workspace/shared-projects';
 
-const output = vscode.window.createOutputChannel('IDPCore Codex');
+const output = vscode.window.createOutputChannel('Runtessa Codex');
 
 export const resolveClient = async (context: vscode.ExtensionContext): Promise<IdeClient> => {
   const { IdeClient } = await import('../api/client');
@@ -22,7 +22,7 @@ export const resolveClient = async (context: vscode.ExtensionContext): Promise<I
   const sessionToken = await getSessionToken(context);
   if (!baseUrl) throw new Error('Set idpcore.coreApiBase first.');
   if (!tenantHost) throw new Error('Set idpcore.tenantHost first.');
-  if (!sessionToken) throw new Error('Run "IDPCore: Sign In to ideNew" first.');
+  if (!sessionToken) throw new Error('Run "Runtessa: Sign In to Studio" first.');
   return new IdeClient({ baseUrl, tenantHost, sessionToken });
 };
 
@@ -221,13 +221,13 @@ const runCodexExec = async (tenantRoot: string, prompt: string) =>
 export const configureConnection = async (context: vscode.ExtensionContext) => {
   const currentBase = getCoreApiBase();
   const currentTenant = getTenantHost();
-  const baseUrl = await vscode.window.showInputBox({ prompt: 'ideNew base URL', value: currentBase || 'http://127.0.0.1:3002' });
+  const baseUrl = await vscode.window.showInputBox({ prompt: 'Studio base URL', value: currentBase || 'http://127.0.0.1:3002' });
   if (baseUrl === undefined) return;
   const tenantHost = await vscode.window.showInputBox({ prompt: 'Tenant host (X-Tenant-Host)', value: currentTenant });
   if (tenantHost === undefined) return;
   await updateSetting('coreApiBase', baseUrl.trim());
   await updateSetting('tenantHost', tenantHost.trim());
-  vscode.window.showInformationMessage('IDPCore connection updated.');
+  vscode.window.showInformationMessage('Runtessa connection updated.');
 };
 
 export const signInWithBrowser = async (context: vscode.ExtensionContext) => {
@@ -238,7 +238,7 @@ export const signInWithBrowser = async (context: vscode.ExtensionContext) => {
   await vscode.window.withProgress(
     {
       location: vscode.ProgressLocation.Notification,
-      title: 'Signing in to ideNew...',
+      title: 'Signing in to Studio...',
       cancellable: false,
     },
     async () => {
@@ -250,7 +250,7 @@ export const signInWithBrowser = async (context: vscode.ExtensionContext) => {
     },
   );
 
-  vscode.window.showInformationMessage('Signed in to ideNew.');
+  vscode.window.showInformationMessage('Signed in to Studio.');
 };
 
 export const pullTenant = async (context: vscode.ExtensionContext, providers: Array<{ refresh: () => void }>) => {
@@ -275,14 +275,14 @@ export const pushActiveFile = async (context: vscode.ExtensionContext, providers
   const client = await resolveClient(context);
   await pushFileFromEditor(client, editor.document.uri);
   await refreshAfterMutation(client, providers);
-  vscode.window.showInformationMessage('Pushed active file to ideNew.');
+  vscode.window.showInformationMessage('Pushed active file to Studio.');
 };
 
 export const pushEverything = async (context: vscode.ExtensionContext, providers: Array<{ refresh: () => void }>) => {
   const client = await resolveClient(context);
   await pushAllChanges(client);
   await refreshAfterMutation(client, providers);
-  vscode.window.showInformationMessage('Pushed tenant changes to ideNew.');
+  vscode.window.showInformationMessage('Pushed tenant changes to Studio.');
 };
 
 export const openTenantRoot = async () => {
@@ -414,7 +414,7 @@ export const openCodexTerminal = async () => {
   const tenantRoot = getTenantRootUri(workspaceFolder).fsPath;
   const codexBin = String(getSettings().get<string>('codexBin') || 'codex').trim() || 'codex';
   const terminal = vscode.window.createTerminal({
-    name: 'IDPCore Codex',
+    name: 'Runtessa Codex',
     cwd: tenantRoot,
   });
   terminal.show(true);
@@ -432,7 +432,7 @@ export const runCodexPrompt = async () => {
   if (!prompt?.trim()) return;
   const tenantRoot = getTenantRootUri(workspaceFolder).fsPath;
   await runCodexExec(tenantRoot, prompt.trim());
-  vscode.window.showInformationMessage('Codex run completed. Review output in the IDPCore Codex panel.');
+  vscode.window.showInformationMessage('Codex run completed. Review output in the Runtessa Codex panel.');
 };
 
 export { getAutoPushOnSave };

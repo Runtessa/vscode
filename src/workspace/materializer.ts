@@ -128,6 +128,6 @@ export const pullTenantWorkspace = async (client: IdeClient) => {
     projects: buildManifestProjects(snapshot),
   };
   await writeJson(getManifestUri(workspaceFolder), manifest);
-  await writeText(vscode.Uri.file(path.join(tenantRoot.fsPath, '.idp', 'README.md')), 'This folder is managed by the IDPCore VS Code extension.\n');
+  await writeText(vscode.Uri.file(path.join(tenantRoot.fsPath, '.idp', 'README.md')), 'This folder is managed by the Runtessa VS Code extension.\n');
   return { workspaceFolder, tenantRoot, manifest };
 };

@@ -23,7 +23,7 @@ Apache-2.0; retain LICENSE, NOTICE and third-party notices.
 
 ---
 
-# IDPCore Tenant Studio
+# Runtessa Tenant Studio
 
 VS Code extension for working on an `ideNew` tenant outside the browser IDE.
 
@@ -35,10 +35,16 @@ VS Code extension for working on an `ideNew` tenant outside the browser IDE.
 - opens tenant UI preview inside VS Code through the same `preview.html` runtime contract used by the browser IDE
 - runs Codex directly inside the pulled tenant workspace
 
+## Compatibility identifiers
+
+The extension keeps its installed ID `idpcore.idpcore-vscode`, command IDs and
+`idpcore.*` settings so existing workspaces, shortcuts and stored sessions continue
+to work. Product titles and command labels use Runtessa.
+
 ## Required configuration
 - `idpcore.coreApiBase`
 - `idpcore.tenantHost`
-- browser sign-in through `IDPCore: Sign In to ideNew`
+- browser sign-in through `Runtessa: Sign In to Studio`
 
 ## Preview configuration
 - `idpcore.previewPort`: preview runtime port, default `3000`
@@ -46,14 +52,14 @@ VS Code extension for working on an `ideNew` tenant outside the browser IDE.
 - `idpcore.previewStage`: `draft` or `published`
 
 ## Useful commands
-- `IDPCore: Configure Connection`
-- `IDPCore: Sign In to ideNew`
-- `IDPCore: Pull Tenant Workspace`
-- `IDPCore: Push Active File`
-- `IDPCore: Push All Changes`
-- `IDPCore: Open Tenant Preview`
-- `IDPCore: Open Codex Terminal`
-- `IDPCore: Run Codex Prompt`
+- `Runtessa: Configure Connection`
+- `Runtessa: Sign In to Studio`
+- `Runtessa: Pull Tenant Workspace`
+- `Runtessa: Push Active File`
+- `Runtessa: Push All Changes`
+- `Runtessa: Open Tenant Preview`
+- `Runtessa: Open Codex Terminal`
+- `Runtessa: Run Codex Prompt`
 
 ## Debugging the extension
 Manual local testing before packaging VSIX:
@@ -68,8 +74,8 @@ Automated test harness:
 This is not a manual preview flow. It launches a temporary test host, runs tests, then exits.
 
 VS Code launch configurations from the monorepo root:
-- `Launch VS Code Extension (IDPCore)`
-- `Test VS Code Extension (IDPCore)`
+- `Launch VS Code Extension (Runtessa)`
+- `Test VS Code Extension (Runtessa)`
 
 They rely on root workspace tasks:
 - `build: ide-vscode`

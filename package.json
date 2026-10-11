@@ -1,7 +1,7 @@
 {
   "name": "idpcore-vscode",
-  "displayName": "IDPCore Tenant Studio",
-  "description": "Develop IDPCore tenant modules, models, UI, shared packages, and ACL from VS Code.",
+  "displayName": "Runtessa Tenant Studio",
+  "description": "Develop Runtessa tenant modules, models, UI, shared packages, and ACL from VS Code.",
   "version": "0.1.0",
   "publisher": "idpcore",
   "engines": {
@@ -29,11 +29,11 @@
     "commands": [
       {
         "command": "idpcore.configureConnection",
-        "title": "IDPCore: Configure Connection"
+        "title": "Runtessa: Configure Connection"
       },
       {
         "command": "idpcore.signIn",
-        "title": "IDPCore: Sign In to ideNew",
+        "title": "Runtessa: Sign In to Studio",
         "icon": {
           "light": "media/actions/light/sign-in.svg",
           "dark": "media/actions/dark/sign-in.svg"
@@ -41,7 +41,7 @@
       },
       {
         "command": "idpcore.pullTenant",
-        "title": "IDPCore: Pull Tenant Workspace",
+        "title": "Runtessa: Pull Tenant Workspace",
         "icon": {
           "light": "media/actions/light/pull.svg",
           "dark": "media/actions/dark/pull.svg"
@@ -49,15 +49,15 @@
       },
       {
         "command": "idpcore.pushActiveFile",
-        "title": "IDPCore: Push Active File"
+        "title": "Runtessa: Push Active File"
       },
       {
         "command": "idpcore.pushAllChanges",
-        "title": "IDPCore: Push All Changes"
+        "title": "Runtessa: Push All Changes"
       },
       {
         "command": "idpcore.refreshExplorer",
-        "title": "IDPCore: Refresh Explorer",
+        "title": "Runtessa: Refresh Explorer",
         "icon": {
           "light": "media/actions/light/refresh.svg",
           "dark": "media/actions/dark/refresh.svg"
@@ -65,11 +65,11 @@
       },
       {
         "command": "idpcore.openTenantRoot",
-        "title": "IDPCore: Open Tenant Root"
+        "title": "Runtessa: Open Tenant Root"
       },
       {
         "command": "idpcore.openTenantPreview",
-        "title": "IDPCore: Open Tenant Preview",
+        "title": "Runtessa: Open Tenant Preview",
         "icon": {
           "light": "media/actions/light/preview.svg",
           "dark": "media/actions/dark/preview.svg"
@@ -77,51 +77,51 @@
       },
       {
         "command": "idpcore.createModule",
-        "title": "IDPCore: Create Module"
+        "title": "Runtessa: Create Module"
       },
       {
         "command": "idpcore.createModel",
-        "title": "IDPCore: Create Model"
+        "title": "Runtessa: Create Model"
       },
       {
         "command": "idpcore.createUiPackage",
-        "title": "IDPCore: Create UI Package"
+        "title": "Runtessa: Create UI Package"
       },
       {
         "command": "idpcore.createSharedUiProject",
-        "title": "IDPCore: Create Shared UI Project"
+        "title": "Runtessa: Create Shared UI Project"
       },
       {
         "command": "idpcore.createSharedModuleProject",
-        "title": "IDPCore: Create Shared Backend Project"
+        "title": "Runtessa: Create Shared Backend Project"
       },
       {
         "command": "idpcore.createSharedUiFile",
-        "title": "IDPCore: Create Shared UI File"
+        "title": "Runtessa: Create Shared UI File"
       },
       {
         "command": "idpcore.createSharedModuleFile",
-        "title": "IDPCore: Create Shared Backend File"
+        "title": "Runtessa: Create Shared Backend File"
       },
       {
         "command": "idpcore.createAclFile",
-        "title": "IDPCore: Create ACL File"
+        "title": "Runtessa: Create ACL File"
       },
       {
         "command": "idpcore.executeLifecycleAction",
-        "title": "IDPCore: Execute Lifecycle Action"
+        "title": "Runtessa: Execute Lifecycle Action"
       },
       {
         "command": "idpcore.rollbackLifecycleRevision",
-        "title": "IDPCore: Rollback Lifecycle Revision"
+        "title": "Runtessa: Rollback Lifecycle Revision"
       },
       {
         "command": "idpcore.openCodexTerminal",
-        "title": "IDPCore: Open Codex Terminal"
+        "title": "Runtessa: Open Codex Terminal"
       },
       {
         "command": "idpcore.runCodexPrompt",
-        "title": "IDPCore: Run Codex Prompt"
+        "title": "Runtessa: Run Codex Prompt"
       }
     ],
     "views": {
@@ -198,7 +198,7 @@
       ]
     },
     "configuration": {
-      "title": "IDPCore Tenant Studio",
+      "title": "Runtessa Tenant Studio",
       "properties": {
         "idpcore.coreApiBase": {
           "type": "string",
@@ -223,7 +223,7 @@
         "idpcore.autoPushOnSave": {
           "type": "boolean",
           "default": true,
-          "description": "Push a saved tenant file back to ideNew automatically."
+          "description": "Push a saved tenant file back to Studio automatically."
         },
         "idpcore.previewPort": {
           "type": "string",
@@ -250,7 +250,7 @@
       "activitybar": [
         {
           "id": "idpcore",
-          "title": "IDPCore",
+          "title": "Runtessa",
           "icon": "media/activity-bar.svg"
         }
       ]
@@ -258,7 +258,7 @@
     "viewsWelcome": [
       {
         "view": "idpcoreTenantExplorer",
-        "contents": "Set the ideNew base URL and tenant defaults.\n[Configure Connection](command:idpcore.configureConnection)\n\nAuthenticate with your browser session.\n[Sign In to ideNew](command:idpcore.signIn)\n\nPull the tenant workspace into VS Code.\n[Pull Tenant Workspace](command:idpcore.pullTenant)"
+        "contents": "Set the Studio base URL and tenant defaults.\n[Configure Connection](command:idpcore.configureConnection)\n\nAuthenticate with your browser session.\n[Sign In to Studio](command:idpcore.signIn)\n\nPull the tenant workspace into VS Code.\n[Pull Tenant Workspace](command:idpcore.pullTenant)"
       },
       {
         "view": "idpcoreLifecycle",
@@ -290,6 +290,6 @@
   "license": "Apache-2.0",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/AlirezaDadrass/Idp.git"
+    "url": "git+https://github.com/Runtessa/vscode.git"
   }
 }
