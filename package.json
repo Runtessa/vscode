@@ -277,7 +277,7 @@
     "dev:host:here": "node ./scripts/launch-dev-host.mjs .."
   },
   "devDependencies": {
-    "@types/node": "20.19.27",
+    "@types/node": "20.19.43",
     "esbuild": "0.28.2",
     "@vscode/vsce": "4.0.0",
     "@types/vscode": "1.90.0",
