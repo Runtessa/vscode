@@ -1,7 +1,7 @@
 import * as assert from 'node:assert/strict';
 import * as vscode from 'vscode';
 
-suite('IDPCore extension', () => {
+suite('Runtessa extension', () => {
   test('registers core commands', async () => {
     const extension = vscode.extensions.getExtension('idpcore.idpcore-vscode');
     assert.ok(extension, 'Development extension was not loaded');
